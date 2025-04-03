@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QARS</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- FontAwesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="left-header">
+            <a href="index.html" class="headlogo">
+                <img src="QARS_logo.png" alt="QARS Logo">
+            </a>
+            <div class="contact-info">
+                <span class="contact-name">Ian Leong</span> <!-- Name -->
+                <span class="contact-number">📞 (+65) 6767-5093</span> <!-- Contact Number -->
+                <span class="contact-email">✉️ qarssg@gmail.com</span> <!-- Email -->
+                <span class="contact-address">📍 Address: 30, Sembawang Drive #09-01 Sun Plaza, Singapore 757713</span>
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <a href="C:\Apache24\htdocs\QARS_Brochure.pdf" download="QARS_Brochure.pdf">Download</a>
+            <a href="company.html">Company</a>
+            <a href="service.html">Services</a>
+            <a href="career.html">Career</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </header>
+    
+    <slide.header>
+        <div class="banner-container">
+            <div class="banner">
+                <!-- Container for Banner Images -->
+                <div class="banner-images" id="banner-images">
+                    <!-- Images will be dynamically injected here -->
+                </div>
+    
+                <!-- Text Overlay -->
+                <span class="banner-text">QARS Singapore</span>
+    
+                <!-- Previous Slide Button -->
+                <button class="prev-slide-btn">❮</button>
+    
+                <!-- Next Slide Button -->
+                <button class="next-slide-btn">❯</button>
+            </div>
+        </div>
+    
+        <script src="script.js"></script>
+    
+        <script src="script.js"></script> <!-- Link to external JS -->
+    </slide.header>    
+
+    <div class="social-links">
+        <a href="https://web.facebook.com/QARSSG" target="_blank" title="Facebook" class="social-icon facebook">
+            <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/qars-spore-70a95693/" target="_blank" title="X (formerly Twitter)" class="social-icon twitter">
+            <i class="fa-brands fa-x-twitter"></i> <!-- Twitter Icon -->
+        </a>
+        <a href="https://www.linkedin.com/in/qars-spore-70a95693/" target="_blank" title="LinkedIn"
+            class="social-icon linkedin">
+            <i class="fab fa-linkedin"></i>
+        </a>
+    </div>
+    <div class="client-container">
+        <h2>Our Clients</h2>
+        <div class="client-logos" id="client-logos"></div>
+    </div>
+
+    <script>
+        // List of logos (can be dynamically generated or static as shown)
+        const logos = [
+            "logo1.png",
+            "logo2.png",
+            "logo3.png",
+            "logo4.png",
+            "logo5.png",
+            "logo6.png",
+            "logo7.png",
+            "logo8.png",
+            "logo9.png",
+            "logo10.png",
+            "logo11.png",
+            "logo12.png",
+            "logo13.png",
+            "logo14.png",
+            "logo15.png",
+            "logo16.png",
+            "logo17.png",
+            "logo18.png",
+            "logo19.png",
+            "logo20.png"
+        ];
+
+        // Function to dynamically load logos from the "company_logo" folder
+        function loadLogos() {
+            const container = document.getElementById('client-logos');
+
+            logos.forEach(logo => {
+                const logoDiv = document.createElement('div');
+                logoDiv.classList.add('logo');
+
+                const img = document.createElement('img');
+                img.src = `company_logo/${logo}`; // This is the path relative to htdocs
+                img.alt = `Client ${logo.charAt(4)}`; // Alt text (you can modify as per your logo naming convention)
+
+                logoDiv.appendChild(img);
+                container.appendChild(logoDiv);
+            });
+        }
+
+        // Call the function to load logos when the page loads
+        window.onload = loadLogos;
+    </script>
+
+    <section class="main-container">
+        <!-- Intro-->
+        <div class="intro">
+            <div class="intro-text">
+                <p>QARS is a leading provider of engineering support and consultancy services for the rail industry,
+                    specializing in the safety and reliability of infrastructure, rolling stock, and software systems.
+                    Our expertise lies in delivering comprehensive solutions for system assurance, quality assurance,
+                    and EMC compliance.</p>
+            </div>
+        </div>
+
+        <!-- QARS + Background grouped together below -->
+        <div class="content-container">
+            <!-- Independent QARS Container -->
+            <div class="qars-container">
+                <span>Q: Quality</span>
+                <span>A: Assurance</span>
+                <span>R: Reliability</span>
+                <span>S: Safety</span>
+            </div>
+
+            <!-- Background Section -->
+            <div class="background">
+                <h1>Background</h1>
+                <li><strong>QARS</strong> was founded in <strong>Hong Kong</strong> in <strong>1996</strong>.</li>
+                <li>QARS overseas operation in <strong>UK</strong> (<strong>1998</strong>), <strong>Singapore</strong> (<strong>2000</strong>) and <strong>Malaysia</strong> (<strong></strong>) .</li>
+                <li>QARS provides <strong>engineering support and consultancy services</strong> to the <strong>rail industry</strong> and <strong>commercial industry</strong>.</li>
+                <li>Specializes in the <strong>safety and reliability</strong> of infrastructure and rolling stock, including <strong>software systems</strong>.</li>
+                <li>Focuses on providing <strong>System/Quality/EMC assurance</strong> and associated services to meet clients' needs at each stage of their operation.</li>
+                <li>Worldwide portfolio includes <strong>major infrastructure projects</strong> such as:</li>
+                <h1>Transport Infrastructure Projects</h1>
+                <table>
+                    <tr>
+                        <th>Country/Region</th>
+                        <th>Project</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">Hong Kong (MTRC)</td>
+                        <td>Lantau Airport Line</td>
+                    </tr>
+                    <tr>
+                        <td>Tseung Kwan O Extension</td>
+                    </tr>
+                    <tr>
+                        <td>Disneyland Resort Line</td>
+                    </tr>
+
+                    <tr>
+                        <td rowspan="2">Hong Kong (KCRC)</td>
+                        <td>West Rail</td>
+                    </tr>
+                    <tr>
+                        <td>East Rail Extensions</td>
+                    </tr>
+
+                    <tr>
+                        <td rowspan="4">Singapore</td>
+                        <td>Changi Airport Line</td>
+                    </tr>
+                    <tr>
+                        <td>North East Line</td>
+                    </tr>
+                    <tr>
+                        <td>Marine Line</td>
+                    </tr>
+                    <tr>
+                        <td>Circle Line</td>
+                    </tr>
+
+                    <tr>
+                        <td>Taiwan</td>
+                        <td>High-Speed Railway</td>
+                    </tr>
+
+                    <tr>
+                        <td>Malaysia</td>
+                        <td>Monorail Development</td>
+                    </tr>
+
+                    <tr>
+                        <td>Dubai</td>
+                        <td>Light Rail Transit</td>
+                    </tr>
+
+                    <tr>
+                        <td>United Kingdom</td>
+                        <td>Channel Tunnel</td>
+                    </tr>
+
+                    <tr>
+                        <td>Italy</td>
+                        <td>Shell Oil Platform Safety Case</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="counter-grow" id="visit-counter">0</div>
+    </footer>
+
+    <script>
+        let visitCount = localStorage.getItem('visitCount') ? parseInt(localStorage.getItem('visitCount')) : 0;
+        visitCount++;
+        localStorage.setItem('visitCount', visitCount);
+        document.getElementById('visit-counter').textContent = visitCount;
+    </script>
+
+</body>
+
+</html>
