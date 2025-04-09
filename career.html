@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QARS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="stylesheader.css">
+    <style>
+                /* Job Listings */
+                .jobs-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 60px;
+            max-width: 2000px;
+            margin: auto;
+            padding: 20px;
+            font-size: 32px;
+        }
+
+        .jobs {
+            flex: 1;
+        }
+
+        /* Search Bar Styling */
+        .search-bar {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .job-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-card h2 {
+            color: rgb(97, 179, 30);
+        }
+
+        .apply-form {
+            flex: 0.5;
+            padding: 20px;
+            background: white;
+            max-width: 400px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 150px;
+        }
+
+        .apply-form input, .apply-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .apply-form button {
+            background: rgb(97, 179, 30);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-top: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            /* Job Cards - Single Column on Mobile */
+            .jobs-container {
+                flex-direction: column;
+                padding: 10px;
+                font-size: 20px;
+            }
+
+            .jobs {
+                flex: none;
+                width: 100%;
+            }
+
+            .job-card {
+                margin-bottom: 15px;
+            }
+
+            .apply-form {
+                margin-top: 20px;
+                width: 100%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <!-- Left: Home Icon + Contact Info -->
+            <div class="header-left">
+                <!-- Home Icon -->
+                <a href="index.html" class="headlogo">
+                    <img src="QARS_logo.png" alt="QARS Logo">
+                </a>
+                <div class="contact-info">
+                    <span class="contact-name">Ian Leong</span> <!-- Name -->
+                    <span class="contact-number">📞 (+65) 6767-5093</span> <!-- Contact Number -->
+                    <span class="contact-email">✉️ qarssg@gmail.com</span> <!-- Email -->
+                    <span class="contact-address">📍 Address: 30, Sembawang Drive</span>
+                    <span class="contact-address"> #09-01 Sun Plaza, Singapore 757713 </span>
+                </div>
+            </div>
+
+            <!-- Right: Nav Buttons + Hamburger -->
+            <div class="right-header">
+                <!-- Nav Buttons (inline for desktop, slide for mobile) -->
+                <nav class="nav-buttons" id="navMenu">
+                    <a href="download.html">Download</a>
+                    <a href="company.html">Company</a>
+                    <a href="service.html">Service</a>
+                    <a href="career.html">Career</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+
+                <!-- Hamburger Menu -->
+                <div class="hamburger-menu" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            navMenu.classList.toggle('show');
+        });
+    </script>
+
+    <section class="jobs-container">
+        <section class="jobs" id="job-list">
+            <h2 style="text-align: center; color: rgb(97, 179, 30);">Available Jobs</h2>
+
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search Job Title..." onkeyup="searchJobs()">
+            </div>
+
+            <div class="job-card">
+                <h2 class="job-title">Software Engineer</h2>
+                <p><strong>Location:</strong> Remote</p>
+                <p><strong>Working Experience:</strong> 1 year</p>
+                <p><strong>Salary:</strong> $60,000 - $80,000</p>
+                <p><strong>Description:</strong> Looking for an experienced software engineer with knowledge of web
+                    development.</p>
+                <p><strong>Requirements:</strong></p>
+                <li>Familiarity with programming languages such as Java, Swift, or C#</li>
+                <li>Experience working in a collaborative environment</li>
+                <li>A computer science degree or equivalent experience in a related field of study</li>
+            </div>
+
+            <div class="job-card">
+                <h2 class="job-title">Data Analyst</h2>
+            </div>
+
+            <div class="job-card">
+                <h2 class="job-title">Cybersecurity Specialist</h2>
+            </div>
+
+            <div class="job-card">
+                <h2 class="job-title">Project Manager</h2>
+            </div>
+        </section>
+
+        <section class="apply-form">
+            <h2>Apply Now</h2>
+            <p>Please send your resume to: <a href="mailto:qarssg@gmail.com">qarssg@gmail.com</a></p>
+            <p><a href="mailto:qarssg@qarsgroup.com">qarssg@qarsgroup.com</a></p>
+            <p><a href="mailto:yinleong@qarsgroup.com">yinleong@qarsgroup.com</a></p>
+        </section>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <p>&copy; 2025 QARS. All Rights Reserved.</p>
+            </div>
+            <div class="footer-right">
+                <div class="visitor-counter">
+                    <span class="visitor-icon">🌍</span>
+                    <span id="visitCount">Visitors: 0</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to count website visits
+        if (!localStorage.getItem('visitorCount')) {
+            localStorage.setItem('visitorCount', 1);
+        } else {
+            let currentCount = parseInt(localStorage.getItem('visitorCount')) + 1;
+            localStorage.setItem('visitorCount', currentCount);
+        }
+
+        // Display the visitor count in the footer
+        document.getElementById('visitCount').innerText = "Visitors: " + localStorage.getItem('visitorCount');
+    </script>
+
+</body>
+
+</html>

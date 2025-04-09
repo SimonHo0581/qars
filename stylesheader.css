@@ -1,0 +1,261 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header Styles */
+header {
+    background-color: #28a745;
+    /* Green header */
+    color: white;
+    padding: 10px;
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 0 20px 5px rgba(40, 167, 69, 0.8);
+    /* Glowing green effect */
+    transition: box-shadow 0.3s ease-in-out;
+    /* Smooth transition for glow effect */
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    /* Align items to the left and right */
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+/* Left Header Section */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.headlogo img {
+    width: 140px;
+    height: auto;
+}
+
+.contact-info {
+    font-size: 10px;
+    color: #ccc;
+}
+
+.contact-info span {
+    display: block;
+    margin: 5px 0;
+}
+
+.contact-name {
+    font-weight: bold;
+}
+
+.contact-number,
+.contact-email,
+.contact-address {
+    font-style: italic;
+}
+
+/* Right Header Section */
+.right-header {
+    display: flex;
+    justify-content: flex-end;
+    /* Align items to the right */
+    align-items: center;
+    gap: 20px;
+    /* Adjust space between nav and hamburger */
+}
+
+/* Nav Buttons */
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-buttons a {
+    text-decoration: none;
+    color: white;
+    background-color: #007BFF;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.nav-buttons a:hover,
+.nav-buttons a.active {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+    /* Slight elevation effect on hover or active */
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    /* Initially hidden */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.hamburger-menu span {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* When Hamburger is Open: Transform into X */
+.hamburger-menu.open span:nth-child(1) {
+    transform: rotate(45deg) translateY(11.5px);
+    /* First span rotates */
+}
+
+.hamburger-menu.open span:nth-child(2) {
+    opacity: 0;
+    /* Hide the middle span */
+}
+
+.hamburger-menu.open span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-11.5px);
+    /* Third span rotates */
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+
+    /* Display the hamburger menu only on mobile */
+    .hamburger-menu {
+        display: flex;
+    }
+
+    /* Nav buttons (slide-in effect) */
+    .nav-buttons {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 50%;
+        background-color: #fff;
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px;
+        border-radius: 6px 0 0 6px;
+        box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.1);
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 99;
+    }
+
+    /* Show the nav buttons when clicked */
+    .nav-buttons.show {
+        transform: translateX(0%);
+    }
+
+    /* Mobile nav links */
+    .nav-buttons a {
+        color: #000;
+        background-color: #f0f0f0;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .nav-buttons a:hover,
+    .nav-buttons a.active {
+        background-color: #007bff;
+        color: white;
+    }
+}
+
+/* Desktop Styles */
+@media (min-width: 769px) {
+
+    /* Inline nav buttons for desktop */
+    .nav-buttons {
+        position: static;
+        flex-direction: row;
+        background-color: transparent;
+        transform: none !important;
+        box-shadow: none;
+        padding: 0;
+    }
+
+    .nav-buttons a {
+        background-color: #007BFF;
+        color: white;
+        font-size: 14px;
+        border: none;
+        padding: 6px 12px;
+    }
+
+    /* Hide hamburger menu on desktop */
+    .hamburger-menu {
+        display: none;
+    }
+}
+
+/* Footer styling */
+footer {
+    background-color: #28a745;
+    color: white;
+    padding: 20px 0;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Container for footer content */
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    /* Stack elements vertically */
+    justify-content: space-between;
+    /* Space between items */
+    height: 40px;
+    /* Adjust the height as needed */
+}
+
+/* Footer Left (Company Name) */
+.footer-left p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Footer Right (Visitor Counter) */
+.footer-right {
+    align-self: center
+}
+
+/* Visitor Counter Styling */
+.visitor-counter {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.visitor-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+#visitCount {
+    font-size: 18px;
+    font-weight: bold;
+}

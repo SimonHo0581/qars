@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QARS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="stylesheader.css">
+    <style>
+        .container {
+            display: flex;
+            max-width: 2400px;
+            margin: 20px auto;
+            padding: 20px;
+            gap: 20px;
+
+        }
+
+        .left-section {
+            flex: 0 1 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .left-section button {
+            background: #313063;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 24px;
+            transition: background 0.3s, transform 0.3s;
+            width: 100%;
+            text-align: left;
+        }
+
+        .left-section button:hover {
+            background: #5754a3;
+            transform: scale(1.05);
+        }
+
+        .right-section {
+            flex: 1;
+            padding: 20px;
+            display: none;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .description-box {
+            background: #eee;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 28px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+            /* so it triggers scroll on mobile */
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #28a745;
+        }
+
+        #description-section {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+
+            .nav-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .left-section {
+                width: 100%;
+                text-align: center;
+            }
+
+            .left-section button {
+                width: 100%;
+            }
+
+            .right-section {
+                width: 100%;
+
+            }
+
+            .description-box {
+                font-size: 20px;
+            }
+
+            table {
+                font-size: 20px;
+            }
+
+
+            td ul {
+                padding-left: 20px;
+                /* Indents bullet points */
+                margin: 0;
+                /* Removes unnecessary spacing */
+            }
+
+            td ul li {
+                word-wrap: break-word;
+                /* Ensures text wraps properly */
+                list-style-position: inside;
+                /* Keeps bullets inside the cell */
+            }
+        }
+
+        /* Image Gallery styles */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .image-caption {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <!-- Left: Home Icon + Contact Info -->
+            <div class="header-left">
+                <!-- Home Icon -->
+                <a href="index.html" class="headlogo">
+                    <img src="QARS_logo.png" alt="QARS Logo">
+                </a>
+                <div class="contact-info">
+                    <span class="contact-name">Ian Leong</span> <!-- Name -->
+                    <span class="contact-number">📞 (+65) 6767-5093</span> <!-- Contact Number -->
+                    <span class="contact-email">✉️ qarssg@gmail.com</span> <!-- Email -->
+                    <span class="contact-address">📍 Address: 30, Sembawang Drive</span>
+                    <span class="contact-address"> #09-01 Sun Plaza, Singapore 757713 </span>
+                </div>
+            </div>
+
+            <!-- Right: Nav Buttons + Hamburger -->
+            <div class="right-header">
+                <!-- Nav Buttons (inline for desktop, slide for mobile) -->
+                <nav class="nav-buttons" id="navMenu">
+                    <a href="download.html">Download</a>
+                    <a href="company.html">Company</a>
+                    <a href="service.html">Service</a>
+                    <a href="career.html">Career</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+
+                <!-- Hamburger Menu -->
+                <div class="hamburger-menu" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open'); // Toggle the 'open' class on the hamburger
+            navMenu.classList.toggle('show');   // Toggle the visibility of the nav menu
+        });
+    </script>
+
+    <div class="container">
+        <!-- Left Section: Button List -->
+        <div class="left-section">
+            <button onclick="showDescription('service1')">EMC</button>
+            <button onclick="showDescription('service2')">EMC Testing</button>
+            <button onclick="showDescription('service3')">EMS</button>
+            <button onclick="showDescription('service4')">MRA</button>
+            <button onclick="showDescription('service5')">O&M Manuals</button>
+            <button onclick="showDescription('service6')">Occupational H&S</button>
+            <button onclick="showDescription('service7')">Oil & Gas</button>
+            <button onclick="showDescription('service8')">Quality Assurance</button>
+            <button onclick="showDescription('service9')">RAMS</button>
+            <button onclick="showDescription('service10')">RCM</button>
+            <button onclick="showDescription('service11')">RSO</button>
+            <button onclick="showDescription('service12')">System Assurrance</button>
+            <button onclick="showDescription('service13')">Software Assurance</button>
+            <button onclick="showDescription('service14')">Survey Consultant</button>
+            <button onclick="showDescription('service15')">Training Manuals</button>
+        </div>
+
+        <!-- Right Section: Description -->
+        <div class="right-section" id="description-section">
+            <h2 id="service-title">Service Title</h2>
+            <p class="description-box" id="service-description">Description will appear here.</p>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <p>&copy; 2025 QARS. All Rights Reserved.</p>
+            </div>
+            <div class="footer-right">
+                <div class="visitor-counter">
+                    <span class="visitor-icon">🌍</span>
+                    <span id="visitCount">Visitors: 0</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to count website visits
+        if (!localStorage.getItem('visitorCount')) {
+            localStorage.setItem('visitorCount', 1);
+        } else {
+            let currentCount = parseInt(localStorage.getItem('visitorCount')) + 1;
+            localStorage.setItem('visitorCount', currentCount);
+        }
+
+        // Display the visitor count in the footer
+        document.getElementById('visitCount').innerText = "Visitors: " + localStorage.getItem('visitorCount');
+    </script>
+
+
+    <script>
+        function showDescription(service) {
+            const title = document.getElementById("service-title");
+            const description = document.getElementById("service-description");
+            const section = document.getElementById("description-section");
+
+            const services = {
+                "service1": {
+                    title: "Electromagnetic Compatibility Consultant",
+                    description: `Major engineering projects require proof that equipment meets EMC standards, crucial for railway infrastructure and beyond. Simply buying EMC-tested equipment doesn't ensure compliance due to environmental factors.<br><br>
+                    <strong>QARS Management & Engineering Consultants Limited</strong> offers specialist EMC consultancy and on-site tests to meet international standards:
+                    
+                    <li>EMC site survey</li>
+                    <li>EMC management strategies</li>
+                    <li>Practical EMC problem solving</li>
+                    <li>Contractual specifications</li>
+                    <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Location</th>
+                                <th>Contract Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Hong Kong</strong></td>
+                                <td>
+                                    
+                                    <li>KCRC </li>
+                                    <li>MTRC </li>
+                                
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>United Kingdom</strong></td>
+                                <td>
+                                    <li>Channel Tunnel Rail Link Phase II - System-Wide Systems and Infrastructure</li>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Singapore</strong></td>
+                                <td>
+                                        <li>LTA CAL, NEL, NSL, EWL, CCL, DTL, TEL, CRL</li>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Taiwan</strong></td>
+                                <td>
+                                        <li>THSR</li>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>United Arab Emirates</strong></td>
+                                <td>
+                                        <li>RTA Dubai Metro Red lines,  Green lines</li>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Saudi Arabia</strong></td>
+                                <td>
+                                        <li>Saudi Riyadh Metro Line Tree</li>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Malaysia</strong></td>
+                                <td>
+                                        <li>LRT - Kelana Jaya Line</li>
+                                        <li>Rapid KL - Monorail</li>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    `
+                },
+                "service2": {
+                    title: "EMC Testing",
+                    description: `Our Testing Services.
+                    <div class="gallery">
+                        <div class="gallery-item">
+                            <img src="images/Picture1.png" alt="Testing Image 1">
+                            <p class="image-caption">Beautiful Landscape</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Picture2.png" alt="Testing Image 2">
+                            <p class="image-caption">Beautiful Landscape</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Picture3.png" alt="Testing Image 3">
+                            <p class="image-caption">Beautiful Landscape</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Picture4.png" alt="Testing Image 4">
+                            <p class="image-caption">Beautiful Landscape</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Picture5.png" alt="Testing Image 5">
+                            <p class="image-caption">Beautiful Landscape</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Picture6.png" alt="Testing Image 6">
+                            <p class="image-caption">Beautiful Landscape</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Picture7.png" alt="Testing Image 7">
+                            <p class="image-caption">Beautiful Landscape</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Picture8.png" alt="Testing Image 8">
+                            <p class="image-caption">Beautiful Landscape</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Picture9.png" alt="Testing Image 9">
+                            <p class="image-caption">Beautiful Landscape</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Picture10.png" alt="Testing Image 10">
+                            <p class="image-caption">Beautiful Landscape</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Picture11.png" alt="Testing Image 11">
+                            <p class="image-caption">Beautiful Landscape</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Picture12.png" alt="Testing Image 12">
+                            <p class="image-caption">Beautiful Landscape</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Picture13.png" alt="Testing Image 13">
+                            <p class="image-caption">Beautiful Landscape</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Picture14.png" alt="Testing Image 14">
+                            <p class="image-caption">Beautiful Landscape</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Picture15.png" alt="Testing Image 15">
+                            <p class="image-caption">Beautiful Landscape</p>
+                        </div>
+                    </div>
+                    `
+                },
+                "service3": {
+                    title: "Maintenance Requirement Analysis",
+                    description: `The ISO 14001 Environmental Management System (EMS) is the most widely recognised international standard. This system can help a company to continually improve its ability to efficiently identify, minimize, prevent and manage environmental impacts as they arise, therefore reducing risk.<br><br>
+                    Certification to this standard can enhance image and global competitiveness, satisfy vendor/investor criteria and improves access to capital, assure customers of commitment by demonstrating environmental management, and maintain good public/community relations.<br><br>
+                    QARS can tailor an Environmental Management System for any kind of industry/company. We will teach all company staff how their work can fulfil the ISO14000 Standard and also will not affect their normal working procedure.
+                    `
+                },
+                "service4": {
+                    title: "Environmental Management System",
+                    description: `By performing the Maintenance Requirement Analysis (MRA), maintenance requirement for the system can be evaluated by considering the reliability, availability and safety integrity of that system.
+                    <br><br>The MRA also provides a planned preventive maintenance schedule from the findings and conclusion of the MRA worksheets. It also can form a part of the Maintenance Plan.
+                    <br><br>QARS has experience in carrying out Maintenance Requirement Analysis for Hong Kong MTRC Tseung Kwan O Extension Trackside Auxiliaries, Main Control System, and Tunnel Environmental Control System.
+                    `
+                },
+                "service5": {
+                    title: "Operational and Maintenance Manuals",
+                    description: `Operation and Maintenance (O&M) Manual serves as a guidance of how to operate and maintain a equipment/ system in engineering sense so that the user shall follow proper procedure to operate and maintain the equipment/ system under safe condition efficiently.
+                    <br><br>QARS provides services of O&M Manual documentation of different engineering equipment/ system, such as,
+                    <li>Building Services (BS) System</li>
+                    <li>Electrical & Mechanical (E&M) Services</li>
+                    <li>Pneumatic System</li>
+                    <li>Sewage Treatment Plant</li>
+                    `
+                },
+                "service6": {
+                    title: "Occupational Health and Safety",
+                    description: `		
+                    Occupational health and safety is of the utmost importance for all industries over the world. The prevailing legislation, regulations, standards and code of practices have covered major industrial and construction activities in Hong Kong. A set of new regulations is also forthcoming by the Labour Department of HKSAR to provide stringent control of occupational health and safety issues.<br><br>
+                    Causes of accidents and their un-clarifying reasons of occurrence resemble those of ineffectual work, thus accident prevention will surely improve the overall productivity of a company. A clear occupational health and safety instruction will keep staff be aware of occupational health and safety issues and responsibilities, finally reduce the potential risk to accidents.
+                    <br><br>Our company can assist our clients to set up an occupational health and safety management system that meet the strict legislation, and by controlling and preventing accidents, the exposure to hazardous situations for all stakeholders including the employees and the pubic, and can be eliminated and minimised.
+                    <br><br>Our company can also carry out risk assessment to identify proactively, latent hazards associated with work processes or activities, actions will be carried out in a timely manner to produce a continuous improvement in occupational health and safety in the working environment.
+                    <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Location</th>
+                                <th>Contract</th>
+                                <th>Client</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Hong Kong</strong></td>
+                                <td>Internal Quality Management Systems Support</td>
+                                <td>First-Tech Engineering Ltd.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hong Kong</strong></td>
+                                <td>KCRC Renovation of City Link Plaza Above KCRC Shatin Station</td>
+                                <td>RMJM Hong Kong Ltd.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hong Kong</strong></td>
+                                <td>KCRC WR DB-1400</td>
+                                <td>Siemens CITIC Consortium</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    `
+                },
+                "service7": {
+                    title: "Oil and Gas Consultant",
+                    description: `		
+                    Our oil & gas safety & reliability services include:<br><br>
+                        <li>Performance Standards Reviews</li>
+                        <li>Safety Case Preparation</li>
+                        <li>QRA Studies</li>
+                        <li>Fire Risk Assessment Studies</li>
+                        <li>Gas Dispersion Modelling</li>
+                        <li>Safety Management System Review & Audit</li>
+                        <li>Escape, Evacuation & Rescue Analysis</li>
+                        <li>Flame Length Calculations</li>
+                        <li>Zonal Calculations for Gas Plants</li>
+                    <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Location</th>
+                                <th>Contract</th>
+                                <th>Client</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>United Kingdom</td>
+                                <td>Oil and Gas Installation - Eider Safety Case Study</td>
+                                <td>Shell U.K. Limited & Esso Exploration and Production U.K. Limited</td>
+                            </tr>
+                            <tr>
+                                <td>United Kingdom</td>
+                                <td>Oil and Gas Installation - Brent Delta Safety Case Study</td>
+                                <td>Shell U.K. Limited & Esso Exploration and Production U.K. Limited</td>
+                            </tr>
+                            <tr>
+                                <td>United Kingdom</td>
+                                <td>Oil and Gas Installation - Brent Bravo Safety Case Study</td>
+                                <td>Shell U.K. Limited & Esso Exploration and Production U.K. Limited</td>
+                            </tr>
+                            <tr>
+                                <td>United Kingdom</td>
+                                <td>Italy High Integrity Pipeline Protection System Ring-O-Valve</td>
+                                <td>Kvaerner Oilfield Products a.s</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    `
+                },
+                "service8": {
+                    title: "Oil and Gas Consultant",
+                    description: `		
+                    Quality Management System (QMS) is important toward todays operations, to improve company performance and reduce costs by system monitoring and improvement program with total quality process.<br><br>
+                    Services include:    
+                        <li>Total Quality Management Setup and Training</li>
+                        <li>Total Quality Management</li>
+                        <li>Auditing and System Verification</li>
+                        <li>Process Improvement</li>
+                        <li>Benchmarking</li>
+                        <li>Business Transformation</li>
+                    <div class="table-container">
+                        <table>
+                        <thead>
+                            <tr>
+                                <th>Location</th>
+                                <th>Contract</th>
+                                <th>Client</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Hong Kong</td>
+                                <td>Quality Management Systems Support</td>
+                                <td>First-Tech Engineering Ltd.</td>
+                            </tr>
+                            <tr>
+                                <td>Hong Kong</td>
+                                <td>Quality Management Systems Support</td>
+                                <td>Polycrown Engineering Ltd.</td>
+                            </tr>
+                            <tr>
+                                <td>Hong Kong</td>
+                                <td>Quality Management Systems Support</td>
+                                <td>Farspeed Contractors Ltd.</td>
+                            </tr>
+                            <tr>
+                                <td>Hong Kong</td>
+                                <td>Quality Management Systems Support</td>
+                                <td>Comming Transportation Engineering Ltd.</td>
+                            </tr>
+                            <tr>
+                                <td>Hong Kong</td>
+                                <td>Quality Management Systems Support</td>
+                                <td>Oriental Fine Consultants Ltd.</td>
+                            </tr>
+                            <tr>
+                                <td>Hong Kong</td>
+                                <td>Quality Management and Quality Inspection of KCRC Trains under the Refurbishment Programme</td>
+                                <td>GEC Alsthom (HK) Ltd.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    `
+                },
+                "service9": {
+                    title: "Reliability, Availability, Maintainability, and Safety (RAMS)",
+                    description: `		
+                    Our RAMS management activities include, but are not limited to the followings:<br><br>
+                    Services include:    
+                        <li>System Safety Plan (SSP)</li>
+                        <li>Preliminary Hazard Analysis (PHA)</li>
+                        <li>Sub-System Hazard Analysis (SSHA)</li>
+                        <li>Interface Hazard Analysis (IHA)</li>
+                        <li>Safety Critical Items List (SCIL)</li>
+                        <li>Operating and Support Hazard Analysis (O&SHA)</li>
+                        <li>Fault Tree Analysis (FTA)</li>
+                        <li>Event Tree Analysis (ETA)</li>
+                        <li>Quantitative Risk Assessment (QRA)</li>
+                        <li>Design Safety Review (DSR)</li>
+                        <li>Safety Audit</li>
+                        <li>System Integration and Commissioning Programme Plan (SICPP)</li>
+                        <li>Hazard Log</li>
+                        <li>Failure Modes, Effects and Criticality Analysis (FMECA)</li>
+                        <li>Reliability Prediction</li>
+                        <li>Reliability Apportionment</li>
+                        <li>Reliability Block Diagram (RBD)</li>
+                        <li>Reliability Critical Items List (RCIL)</li>
+                        <li>Maintainability Analyses</li>
+                        <li>Availability Calculations</li>
+                        <li>System Assurance Demonstration Plan</li>
+                        <li>Reliability Demonstration Plan</li>
+                        <li>Maintainability Demonstration Plan</li>
+                        <li>Failure Reporting, Analysis and Corrective Action System (FRACAS)</li>
+                        <li>Operational Safety Report (OSR)</li>
+                    <div class="table-container">
+                        <table>
+                        <tr>
+                            <th>Location</th>
+                            <th>Contract</th>
+                        </tr>
+                        <tr>
+                            <td rowspan="7">Taiwan</td>
+                            <td>Taiwan High Speed Rail Corporation Contract No. S290 Tainan Station</td>
+                        </tr>
+                        <tr>
+                            <td>Taiwan High Speed Rail Corporation Contract No. S215 Taoyuan Station</td>
+                        </tr>
+                        <tr>
+                            <td>Taiwan High Speed Rail Corporation Contract No. S295 Tsoying Station</td>
+                        </tr>
+                        <tr>
+                            <td>Taiwan High Speed Rail Corporation Contract No. S250 Taichung Station</td>
+                        </tr>
+                        <tr>
+                            <td>Taiwan High Speed Rail Corporation Contract No. S280 Chiayi Station</td>
+                        </tr>
+                        <tr>
+                            <td>Taiwan High Speed Rail Corporation Contract No. S220 Hsinchu Station</td>
+                        </tr>
+                        <tr>
+                            <td>Taiwan High Speed Rail Corporation Contract No. D290 Yanchao Depot</td>
+                        </tr>
+                        <tr>
+                        <td rowspan="27">Hong Kong</td>
+                        <td>KCRC WR CC-202 Yuen Long and Long Ping Station E&M Work</td>
+                        </tr>
+                        <tr>
+                            <td>KCRC WR CC-203 Tin Shui Wai Station E&M Work</td>
+                        </tr>
+                        <tr>
+                            <td>KCRC WR CC-212 Siu Hong Station E&M Work</td>
+                        </tr>
+                        <tr>
+                            <td>KCRC WR CC-213 Tuen Mun Station E&M Work</td>
+                        </tr>
+                        <tr>
+                            <td>KCRC WR CC-300 Tsuen Wan Station & Approach Tunnels Work</td>
+                        </tr>
+                        <tr>
+                            <td>KCRC WR CC-402 Nam Cheong Station E&M Work</td>
+                        </tr>
+                        <tr>
+                            <td>KCRC WR CC-403 Mei Foo to Nam Cheong Tunnel Works</td>
+                        </tr>
+                        <tr>
+                            <td>KCRC WR CC-404 Mei Foo Station E&M Work</td>
+                        </tr>
+                        <tr>
+                            <td>KCRC WR CC-602 Kam Sheung Road Station E&M Work</td>
+                        </tr>
+                        <tr>
+                            <td>KCRC WR CC-604 Pat Heung Maintenance Centre E&M Work</td>
+                        </tr>
+                        <tr>
+                            <td>KCRC WR DB-350 Tai Lam Tunnel E&M Work</td>
+                        </tr>
+                        <tr>
+                            <td>KCRC WR DB-1650 (Electronic Access Control)</td>
+                        </tr>
+                        <tr>
+                            <td>KCRC WR SI-1200</td>
+                        </tr>
+                        <tr>
+                            <td>KCRC WR DB-1400</td>
+                        </tr>
+                        <tr>
+                            <td>KCRC WR DD-400</td>
+                        </tr>
+                        <tr>
+                            <td>KCRC ERE TCC-200 & TCC-300</td>
+                        </tr>
+                        <tr>
+                            <td>KCRC ERE LDD-300</td>
+                        </tr>
+                        <tr>
+                            <td>KCRC ERE LCC-204</td>
+                        </tr>
+                        <tr>
+                            <td>MTRC TKE C664 (Building Services)</td>
+                        </tr>
+                        <tr>
+                            <td>Contract 15/WSD/96 Chlorine Scrubber System for the new Tai Po Treatment Works and Pumping Station</td>
+                        </tr>
+                        <tr>
+                            <td>Damper Analysis</td>
+                        </tr>
+                        <tr>
+                            <td>MTRC C4342.C01E ECS Modification for Phase 2 Stations with Platform Screen Door</td>
+                        </tr>
+                        <tr>
+                            <td>MTRC C681</td>
+                        </tr>
+                        <tr>
+                            <td>MTRC TKE C664 (Building Services)</td>
+                        </tr>
+                        <tr>
+                            <td>MTRC LAR - Pneumatic System for the Whole Line</td>
+                        </tr>
+                        <tr>
+                            <td>MTRC LAR C553</td>
+                        </tr>
+                        <tr>
+                            <td>MTRC LAR C556</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="6">Singapore</td>
+                            <td>LTA Changi Airport Line C553, C573</td>
+                        </tr>
+                        <tr>
+                            <td>LTA North East Line C773</td>
+                        </tr>
+                        <tr>
+                            <td>LTA Dover Station</td>
+                        </tr>
+                        <tr>
+                            <td>LTA Circle Line</td>
+                        </tr>
+                        <tr>
+                            <td>LTA Light Rapid Transit C810</td>
+                        </tr>
+                        <tr>
+                            <td>LTA Existing EW & NS Line</td>
+                        </tr>
+                    </table>
+                    </div>
+
+                    Our Client include:
+                    <li>Shinryo Corporation</li>
+                    <li>Siemens Limited</li>
+                    <li>Chun Wo E & M Engineering Ltd.</li>
+                    <li>AMEC E&M Engineers Ltd.</li>
+                    <li>Mott Connell Ltd.</li>
+                    <li>BYME Engineering (HK) Ltd.</li>
+                    <li>CNA Engineers Pte. Ltd.</li>
+                    <li>Barclay Mowlem (Hong Kong) Ltd.</li>
+                    <li>G.E.C. (Hong Kong) Ltd.</li>
+                    <li>Jardine-China Overseas Joint Venture</li>    
+                    `
+                },
+                "service10": {
+                    title: "Reliability Centre Maintenance",
+                    description: `		
+                    Maintainability engineering is rapidly growing in importance because of its considerable contribution towards the reduction in maintenance costs of a product during its operation. At the same time maintainability theory provides a very powerful tool with which to provide engineers with a quantitative description of the ability of their products to be restored to working order, by performing appropriate maintenance tasks.
+                    <br><br>Reliability Centred Maintenance (RCM) has success stories around the world and the following facts and figures were given courtesy of QARS, TACS and DataTeam.
+                    <br><br>Typical Benefits:    
+                        <li>Reduction in spares inventory of 20-25%</li>
+                        <li>Reduction in maintenance costs by up to 40%</li>
+                        <li>Reduction in new spares purchased of 10-15%</li>
+                        <li>Improvement in plant availability by up to 15%</li>
+                        <li>Improvement in equipment reliability</li>
+                    <br><br>RCM has been named to emphasise the role that reliability theory and practice plays in properly focusing (or centering) preventive maintenance activities on the retention of the equipment's inherent design reliability. As the name implies, then, reliability technology is at the very center of the maintenance philosophy and planning process.
+                    <br><br>RCM breaks down into four steps for analysis:
+                    <li>Assets Criticality Analysis (ACA)</li>
+                    <li>Failure Modes Effects Analysis (FMEA)</li>
+                    <li>Failure Characteristic Analysis (FCA)</li>
+                    <li>Maintenance Strategy Selection (MSS)</li>
+                    <br><br>RCM ensures that both today and in the future, the engineer understand "why" each task in maintenance is important, so no effort is wasted on doing what is meaningless.
+                    <br><br>RCM ensures that the task selection derives from a comprehensive knowledge of equipment failure modes because it is at that level of detail where failure prevention, detection, or discovery must occur. If the tasks selection process, whatever it may be, does not do this, then there is no assurance that the task really does anything particular useful.
+                    <br><br>RCM ensures that the most effective (least costly) task is chosen for implementation.
+                    <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Location</th>
+                            <th>Contract</th>
+                            <th>Client</th>
+                        </tr>
+                        <tr>
+                            <td>Hong Kong</td>
+                            <td>Damper Analysis</td>
+                            <td>Howden Buffalo Calidair Division</td>
+                        </tr>
+                        <tr>
+                            <td>Hong Kong</td>
+                            <td>DSD TP25/93 - Tai Po Sewage Treatment Works Phase IV-B</td>
+                            <td>Chevalier (Envirotech) Limited</td>
+                        </tr>
+                    </table>
+                    </div>
+                    `
+                },
+                "service11": {
+                    title: "Registered Safety Officer",
+                    description: `Pursuant to the ordinance, Registered Safety Officer (RSO) shall be required for construction site in Hong Kong. 
+                    <br>QARS provides service of qualified RSO that is highly experienced in related works such as construction safety training and supervision, conducting safety audits, etc.	
+                    `
+                },
+                "service12": {
+                    title: "System Assurance",
+                    description: `QARS has extensive experiences in preparation of Safety Cases for HMRI, Railtrack and Governments. Safety Cases as per BS EN 50126, Mil-Std-882D and DD ENV 50129:
+                    <li>System Safety Plan</li>
+                    <li>HMRI Overview Documentation</li>
+                    <li>Generic Product Safety Cases</li>
+                    <li>Generic Application Safety Cases</li>
+                    <li>Application Specific Safety Cases</li>
+                    <li>Application Specific Safety Cases addenda</li>
+                    <li>Project Safety Cases for Government Submission</li>
+                    <br><br>System Safety Management complies with the requirements of Railtrack, Channel Tunnel Rail Link (CTRL), London Underground and European standards. Other Safety techniques include:<br><br>
+                    <li>Preliminary Hazard Analysis</li>
+                    <li>System Hazard Analysis</li>
+                    <li>Interface Hazard Analysis</li>
+                    <li>Operational & Maintenance Hazard Analysis</li>
+                    <li>HAZOP & HAZID Workshop</li>
+                    <li>Safety Critical Items List</li>
+                    <li>Qualitative Risk Assessment</li>
+                    <li>Hazard Log</li>
+                    <li>Design Risk Management</li>
+                    <br><br>Reading across knowledge gained from France, Hong Kong, Singapore and United Kingdom.
+                    `
+                },
+                "service13": {
+                    title: "Software Assurance",
+                    description: `Software for safety critical system shall conformance to statement to each clause ISO 9000-3, BS EN50128, IEC 65, IEC 1608, BS5887 and Mil-Std-882. The Railway Industries should also include RIA 19 and RIA 23 as part of the common standards.
+                    <br><br>A system safety program is a prerequisite to performing analysis or development of safety critical software. Although it is often claimed that "software cannot cause hazard", this is only true where the software resides on a non-hazardous platform and does not interface or interact with any hazardous hardware or human operator.
+                    <br><br>Software Safety shall conform toward the pre-defined level of Safety Integrity and each level have strict requirements with the objective to ensure the system parameterisation correct and the proven formal methods as parts of the software constructed against the requirements quality software life cycle.
+                    <br><br>Studies include:
+                    <li>Software Quality Management Plan</li>
+                    <li>Configuration Management</li>
+                    <li>Software Safety Plan</li>
+                    <li>Software Integrity Auditing</li>
+                    <li>Software Safety Verification</li>
+                    <li>Software Hazard Analysis</li>
+                    <li>Software Safety Analysis</li>
+                    <li>Software Parameterisation Verification</li>
+                    <li>Software Technical Modelling Verification</li>
+                    <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Location</th>
+                            <th>Contract</th>
+                            <th>Client</th>
+                        </tr>
+                        <tr>
+                            <td>United Kingdom</td>
+                            <td>Channel Tunnel Rail Link Phase II - System-Wide Systems and Infrastructure</td>
+                            <td>Rail Link Engineering (RLE) and Union Railways Limited</td>
+                        </tr>
+                        <tr>
+                            <td>Singapore</td>
+                            <td>LTA SMRT CAL C573</td>
+                            <td>CNA Engineers Pte. Ltd.</td>
+                        </tr>
+                        <tr>
+                            <td>Singapore</td>
+                            <td>LTA SMRT NEL C773</td>
+                            <td>CNA Engineers Pte. Ltd.</td>
+                        </tr>
+                    </table>
+                    </div>
+                    `
+                },
+                "service14": {
+                    title: "Survey",
+                    description: `
+                    <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Location</th>
+                            <th>Contract</th>
+                            <th>Client</th>
+                        </tr>
+                        <tr>
+                            <td>Hong Kong</td>
+                            <td>KCRC Survey of Risk Management Indices</td>
+                            <td>Mott Connell Ltd.</td>
+                        </tr>
+                    </table>
+                    </div>
+                    `
+                },
+                "service15": {
+                    title: "Training Manuals",
+                    description: `
+                    In view of effective and safety use of equipment/ system, training manuals of equipment/ system is certainly an essential. We, QARS, have had supplied services of training manuals documentation for numerous equipment/ system, such as
+                    <li>Building Services (BS) System</li>
+                    <li>Electrical & Mechanical (E&M) Services</li>
+                    <li>Pneumatic System</li>
+                    `
+                },
+
+
+            };
+
+            if (services[service]) {
+                title.textContent = services[service].title;
+                description.innerHTML = services[service].description;
+                section.style.display = "block";
+            } else {
+                console.warn("Invalid service selected.");
+            }
+        }
+    </script>
+</body>
+
+</html>
